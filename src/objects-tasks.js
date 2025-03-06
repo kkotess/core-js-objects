@@ -18,7 +18,8 @@
  *    shallowCopy({}) => {}
  */
 function shallowCopy(obj) {
-  return { ...obj };
+  const object = {};
+  return Object.assign(object, obj);
 }
 
 /**
@@ -50,7 +51,11 @@ function mergeObjects(/* objects */) {
  *
  */
 function removeProperties(obj, keys) {
-  return Reflect.deleteProperty(obj, keys);
+  const object = { ...obj };
+  keys.forEach((key) => {
+    delete object[key];
+  });
+  return object;
 }
 
 /**
